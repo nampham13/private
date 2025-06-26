@@ -5,12 +5,20 @@ Simplified Demo of 3D Anomaly Detection Pipeline Structure
 
 This demonstrates the pipeline architecture and capabilities without requiring
 heavy dependencies like PyTorch. It shows the modular design and key concepts.
+
+To run this demo:
+    cd detection/examples/basic
+    python demo_pipeline.py
 """
 
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from typing import List, Tuple, Dict
 from pathlib import Path
+
+# Add the detection package to Python path
+sys.path.append(str(Path(__file__).parent.parent.parent))
 
 
 class MockTensor:
