@@ -440,7 +440,7 @@ def create_resnet_pipeline(input_dim: int = 64,
     """Create a pipeline with ResNet-based feature extractor."""
     
     feature_extractor_config = {
-        'type': 'resnet18',
+        'type': 'resnet50',
         'args': {
             'in_channels': 1,
             'extract_features': True
@@ -448,7 +448,7 @@ def create_resnet_pipeline(input_dim: int = 64,
     }
     
     embedding_config = {
-        'input_channels': 512,  # From ResNet-18 final layer
+        'input_channels': 512,
         'patch_size': patch_size,
         'embedding_method': 'pool',
         'pooling_type': 'adaptive'
@@ -457,7 +457,7 @@ def create_resnet_pipeline(input_dim: int = 64,
     autoencoder_config = {
         'type': autoencoder_type,
         'args': {
-            'input_dim': 512,  # After adaptive pooling
+            'input_dim': 512,
             'hidden_dims': [256, 128, 64],
             'latent_dim': 32
         }
