@@ -2,6 +2,41 @@
 
 A comprehensive preprocessing pipeline for converting 2D RGB images to 4-channel RGB-D tensors using depth estimation and image enhancement techniques.
 
+## 📁 Project Structure
+
+```
+preprocess/
+├── 📦 core/                          # Core processing modules
+│   ├── rgb_to_rgbd.py               # Main RGB-D processor
+│   ├── filters.py                   # Image filtering utilities
+│   ├── histogram_equalization.py    # Contrast enhancement
+│   ├── depth_estimation.py          # Depth map generation
+│   └── __init__.py                  # Core package init
+│
+├── 🛠️ utils/                        # Utility modules
+│   ├── visualization.py             # Visualization tools
+│   └── __init__.py                  # Utils package init
+│
+├── 🔧 tools/                        # Command-line tools
+│   ├── cli.py                       # CLI interface
+│   └── __init__.py                  # Tools package init
+│
+├── 📚 examples/                     # Usage examples
+│   ├── circuit_board_processor.py   # Circuit board demo
+│   ├── quick_test.py                # Simple test script
+│   ├── example_usage.py             # Basic usage
+│   └── __init__.py                  # Examples package init
+│
+├── 🧪 tests/                        # Test suite
+│   └── __init__.py                  # Tests package init
+│
+├── 📖 docs/                         # Documentation
+│   └── __init__.py                  # Docs package init
+│
+├── requirements.txt                 # Dependencies
+└── __init__.py                     # Main package init
+```
+
 ## Features
 
 ✅ **Image Filtering**
@@ -51,6 +86,9 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
 
 ```python
 from preprocess import RGBToRGBDProcessor
+# OR for direct imports:
+from preprocess.core import RGBToRGBDProcessor
+from preprocess.utils import RGBDVisualizer
 import numpy as np
 
 # Initialize processor
@@ -73,23 +111,23 @@ print(f"Tensor shape: {tensor.shape}")  # (4, H, W)
 
 ```bash
 # Basic conversion
-python cli.py input.jpg output.npz
+python tools/cli.py input.jpg output.npz
 
 # Batch processing
-python cli.py input_folder/ output_folder/ --batch
+python tools/cli.py input_folder/ output_folder/ --batch
 
 # Custom settings
-python cli.py input.jpg output.npz \
+python tools/cli.py input.jpg output.npz \
     --filter gaussian \
     --equalization hsv \
     --depth-model midas_large \
     --visualize
 
 # Use presets
-python cli.py input.jpg output.npz --preset high_quality
+python tools/cli.py input.jpg output.npz --preset high_quality
 
 # List available presets
-python cli.py --list-presets
+python tools/cli.py --list-presets
 ```
 
 ### Advanced Usage
