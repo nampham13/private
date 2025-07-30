@@ -8,11 +8,11 @@ import json
 import pickle
 from datetime import datetime
 
-from data_loader import load_and_normalize_volume, load_dataset
-from feature_extractor import FeatureExtractor3D, Simple3DCNN
-from feature_embedding import FeatureEmbedding, PatchSampler
-from autoencoder import Autoencoder, VariationalAutoencoder, DenoisingAutoencoder
-from training import train_autoencoder, FeatureVectorDataset
+from src.core.data_loader import load_and_normalize_volume, load_dataset
+from src.models.feature_extractor import FeatureExtractor3D, Simple3DCNN
+from src.models.feature_embedding import FeatureEmbedding, PatchSampler
+from src.models.autoencoder import Autoencoder, VariationalAutoencoder, DenoisingAutoencoder
+from src.models.training import train_autoencoder, FeatureVectorDataset
 from inference import inference_pipeline, extract_test_features, compute_reconstruction_errors
 from thresholding import compute_threshold_from_normal_scores, apply_threshold
 from evaluation import comprehensive_evaluation, compute_roc_auc, compute_precision_recall

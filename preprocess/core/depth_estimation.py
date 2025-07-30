@@ -130,7 +130,16 @@ class DepthEstimator:
             image = (image * 255).astype(np.uint8)
         
         # Apply preprocessing transform
-        input_tensor = self.transform(image).unsqueeze(0).to(self.device)
+        input_tensor = self.transform(image)
+        # Ensure input_tensor is [1, 3, H, W]
+        if input_tensor.dim() == 3:
+            input_tensor = input_tensor.unsqueeze(0)
+        elif input_tensor.dim() == 4 and input_tensor.shape[0] != 1:
+            # If batch size is not 1, raise error
+            raise ValueError(f"Input tensor has unexpected batch size: {input_tensor.shape}")
+        elif input_tensor.dim() != 4:
+            raise ValueError(f"Input tensor has unexpected shape: {input_tensor.shape}")
+        input_tensor = input_tensor.to(self.device)
         
         # Perform inference
         with torch.no_grad():

@@ -13,10 +13,10 @@ from typing import Union, Optional, Tuple, List, Dict, Any
 from pathlib import Path
 import os
 
-from .filters import ImageFilter, FilterType
-from .histogram_equalization import HistogramEqualizer, ColorSpace
-from .depth_estimation import DepthEstimator, DepthPostProcessor
-from ..utils.visualization import RGBDVisualizer
+from core.filters import ImageFilter, FilterType
+from core.histogram_equalization import HistogramEqualizer, ColorSpace
+from core.depth_estimation import DepthEstimator, DepthPostProcessor
+from utils.visualization import RGBDVisualizer
 
 
 class RGBToRGBDProcessor:
